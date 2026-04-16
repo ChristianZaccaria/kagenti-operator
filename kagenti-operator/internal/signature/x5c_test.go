@@ -153,9 +153,10 @@ func buildTestJWSWithX5C(t *testing.T, cardData *agentv1alpha1.AgentCardData, ke
 	signingInput := []byte(protectedB64 + "." + payloadB64)
 
 	hashFunc := crypto.SHA256
-	if alg == "ES384" {
+	switch alg {
+	case "ES384":
 		hashFunc = crypto.SHA384
-	} else if alg == "ES512" {
+	case "ES512":
 		hashFunc = crypto.SHA512
 	}
 	h := hashFunc.New()

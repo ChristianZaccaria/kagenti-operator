@@ -73,7 +73,7 @@ func TestBuildResolvedVolumes_CustomEnvoyConfigMapName(t *testing.T) {
 	var envoyVolume *string
 	for _, v := range volumes {
 		if v.Name == "envoy-config" {
-			name := v.VolumeSource.ConfigMap.LocalObjectReference.Name
+			name := v.ConfigMap.Name
 			envoyVolume = &name
 		}
 	}
@@ -91,7 +91,7 @@ func TestBuildResolvedVolumes_DefaultEnvoyConfigMapName(t *testing.T) {
 
 	for _, v := range volumes {
 		if v.Name == "envoy-config" {
-			name := v.VolumeSource.ConfigMap.LocalObjectReference.Name
+			name := v.ConfigMap.Name
 			if name != EnvoyConfigMapName {
 				t.Errorf("envoy-config ConfigMap name = %q, want %q", name, EnvoyConfigMapName)
 			}

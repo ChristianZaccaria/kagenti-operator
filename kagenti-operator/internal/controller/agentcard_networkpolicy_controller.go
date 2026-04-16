@@ -72,7 +72,7 @@ func (r *AgentCardNetworkPolicyReconciler) Reconcile(ctx context.Context, req ct
 		return ctrl.Result{}, err
 	}
 
-	if !agentCard.ObjectMeta.DeletionTimestamp.IsZero() {
+	if !agentCard.DeletionTimestamp.IsZero() {
 		return r.handleDeletion(ctx, agentCard)
 	}
 

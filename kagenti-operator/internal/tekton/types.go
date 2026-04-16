@@ -80,7 +80,7 @@ type TektonConfigList struct {
 // DeepCopy returns a typed deep copy of the TektonConfig.
 func (in *TektonConfig) DeepCopy() *TektonConfig {
 	out := *in
-	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
+	in.DeepCopyInto(&out.ObjectMeta)
 	out.Spec = *in.Spec.DeepCopy()
 	return &out
 }
@@ -91,7 +91,7 @@ func (in *TektonConfig) DeepCopyObject() runtime.Object {
 
 func (in *TektonConfigList) DeepCopyObject() runtime.Object {
 	out := *in
-	in.ListMeta.DeepCopyInto(&out.ListMeta)
+	in.DeepCopyInto(&out.ListMeta)
 	if in.Items != nil {
 		out.Items = make([]TektonConfig, len(in.Items))
 		for i := range in.Items {
